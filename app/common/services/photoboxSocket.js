@@ -2,17 +2,17 @@
 
 /**
  * @ngdoc function
- * @name pulsetotemGuestBookClientApp.factory:guestBookSocket
+ * @name pulsetotemGuestBookClientApp.factory:photoboxSocket
  * @description
- * # guestBookSocket Factory
+ * # photoboxSocket Factory
  * Factory of the pulsetotemGuestBookClientApp
  */
 angular.module('PulseTotemCommon')
-  .factory('guestBookSocket', ['$rootScope', 'CONSTANTS', 'callbackManager', 'socketFactory', function ($rootScope, CONSTANTS, callbackManager, socketFactory) {
-    var guestBookSocketFactory = {};
-    guestBookSocketFactory.guestBookSocket = null;
+  .factory('photoboxSocket', ['$rootScope', 'CONSTANTS', 'callbackManager', 'socketFactory', function ($rootScope, CONSTANTS, callbackManager, socketFactory) {
+    var photoboxSocketFactory = {};
+    photoboxSocketFactory.photoboxSocket = null;
 
-    guestBookSocketFactory.init = function(callSocketId, successCB, failCB) {
+    photoboxSocketFactory.init = function(callSocketId, successCB, failCB) {
       var guestBookIOSocket = io(CONSTANTS.guestBookServiceUrl + CONSTANTS.guestBookClientPath,
         {
           'reconnection': true,
@@ -60,71 +60,71 @@ angular.module('PulseTotemCommon')
         //TODO: Send an email and Notification to Admins !
 
         setTimeout(function() {
-          guestBookSocketFactory.guestBookSocket = null;
-          guestBookSocketFactory.init(callSocketId, successCB, failCB);
+          photoboxSocketFactory.photoboxSocket = null;
+          photoboxSocketFactory.init(callSocketId, successCB, failCB);
         }, 5000);
       });
 
-      var guestBookSocket = socketFactory({
+      var photoboxSocket = socketFactory({
         ioSocket: guestBookIOSocket
       });
 
-      guestBookSocketFactory.guestBookSocket = guestBookSocket;
+      photoboxSocketFactory.photoboxSocket = photoboxSocket;
     };
 
-    guestBookSocketFactory.exit = function() {
-      guestBookSocketFactory.guestBookSocket = null;
+    photoboxSocketFactory.exit = function() {
+      photoboxSocketFactory.photoboxSocket = null;
     };
 
-    guestBookSocketFactory.on = function() {
-      if(guestBookSocketFactory.guestBookSocket != null) {
-        guestBookSocketFactory.guestBookSocket.removeAllListeners(arguments[0]);
-        guestBookSocketFactory.guestBookSocket.on.apply(this,arguments);
+    photoboxSocketFactory.on = function() {
+      if(photoboxSocketFactory.photoboxSocket != null) {
+        photoboxSocketFactory.photoboxSocket.removeAllListeners(arguments[0]);
+        photoboxSocketFactory.photoboxSocket.on.apply(this,arguments);
       } else {
         console.error("An error occurred : GuestBookService isn't initialized.");
       }
     };
 
-    guestBookSocketFactory.addListener = function() {
-      if(guestBookSocketFactory.guestBookSocket != null) {
-        guestBookSocketFactory.guestBookSocket.removeAllListeners(arguments[0]);
-        guestBookSocketFactory.guestBookSocket.addListener.apply(this,arguments);
+    photoboxSocketFactory.addListener = function() {
+      if(photoboxSocketFactory.photoboxSocket != null) {
+        photoboxSocketFactory.photoboxSocket.removeAllListeners(arguments[0]);
+        photoboxSocketFactory.photoboxSocket.addListener.apply(this,arguments);
       } else {
         console.error("An error occurred : GuestBookService isn't initialized.");
       }
     };
 
-    guestBookSocketFactory.removeListener = function() {
-      if(guestBookSocketFactory.guestBookSocket != null) {
-        guestBookSocketFactory.guestBookSocket.removeListener.apply(this,arguments);
+    photoboxSocketFactory.removeListener = function() {
+      if(photoboxSocketFactory.photoboxSocket != null) {
+        photoboxSocketFactory.photoboxSocket.removeListener.apply(this,arguments);
       } else {
         console.error("An error occurred : GuestBookService isn't initialized.");
       }
     };
 
-    guestBookSocketFactory.removeAllListeners = function() {
-      if(guestBookSocketFactory.guestBookSocket != null) {
-        guestBookSocketFactory.guestBookSocket.removeAllListeners.apply(this,arguments);
+    photoboxSocketFactory.removeAllListeners = function() {
+      if(photoboxSocketFactory.photoboxSocket != null) {
+        photoboxSocketFactory.photoboxSocket.removeAllListeners.apply(this,arguments);
       } else {
         console.error("An error occurred : GuestBookService isn't initialized.");
       }
     };
 
-    guestBookSocketFactory.emit = function() {
-      if(guestBookSocketFactory.guestBookSocket != null) {
-        guestBookSocketFactory.guestBookSocket.emit.apply(this,arguments);
+    photoboxSocketFactory.emit = function() {
+      if(photoboxSocketFactory.photoboxSocket != null) {
+        photoboxSocketFactory.photoboxSocket.emit.apply(this,arguments);
       } else {
         console.error("An error occurred : GuestBookService isn't initialized.");
       }
     };
 
-    guestBookSocketFactory.forward = function() {
-      if(guestBookSocketFactory.guestBookSocket != null) {
-        guestBookSocketFactory.guestBookSocket.forward.apply(this,arguments);
+    photoboxSocketFactory.forward = function() {
+      if(photoboxSocketFactory.photoboxSocket != null) {
+        photoboxSocketFactory.photoboxSocket.forward.apply(this,arguments);
       } else {
         console.error("An error occurred : GuestBookService isn't initialized.");
       }
     };
 
-    return guestBookSocketFactory;
+    return photoboxSocketFactory;
   }]);
