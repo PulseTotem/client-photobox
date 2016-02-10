@@ -13,7 +13,7 @@ angular.module('PulseTotemCommon')
     photoboxSocketFactory.photoboxSocket = null;
 
     photoboxSocketFactory.init = function(callSocketId, successCB, failCB) {
-      var guestBookIOSocket = io(CONSTANTS.guestBookServiceUrl + CONSTANTS.guestBookClientPath,
+      var photoboxIOSocket = io(CONSTANTS.photoboxServiceUrl + CONSTANTS.photoboxClientPath,
         {
           'reconnection': true,
           'reconnectionAttempts': 10,
@@ -24,39 +24,39 @@ angular.module('PulseTotemCommon')
           'multiplex': false
         });
 
-      guestBookIOSocket.on("connect", function () {
+      photoboxIOSocket.on("connect", function () {
         successCB();
       });
 
-      guestBookIOSocket.on("error", function (errorData) {
-        console.error("An error occurred during connection to GuestBookService.");
+      photoboxIOSocket.on("error", function (errorData) {
+        console.error("An error occurred during connection to PhotoboxService.");
         console.log(errorData);
-        failCB("An error occurred during connection to GuestBookService.");
+        failCB("An error occurred during connection to PhotoboxService.");
       });
 
-      guestBookIOSocket.on("disconnect", function () {
-        console.info("Disconnected from GuestBookService.");
+      photoboxIOSocket.on("disconnect", function () {
+        console.info("Disconnected from PhotoboxService.");
       });
 
-      guestBookIOSocket.on("reconnect", function (attemptNumber) {
-        console.info("Connected to GuestBookService after " + attemptNumber + " attempts.");
+      photoboxIOSocket.on("reconnect", function (attemptNumber) {
+        console.info("Connected to PhotoboxService after " + attemptNumber + " attempts.");
       });
 
-      guestBookIOSocket.on("reconnect_attempt", function () {
-        console.info("Trying to reconnect to GuestBookService.");
+      photoboxIOSocket.on("reconnect_attempt", function () {
+        console.info("Trying to reconnect to PhotoboxService.");
       });
 
-      guestBookIOSocket.on("reconnecting", function (attemptNumber) {
-        console.info("Trying to connect to GuestBookService - Attempt number " + attemptNumber + ".");
+      photoboxIOSocket.on("reconnecting", function (attemptNumber) {
+        console.info("Trying to connect to PhotoboxService - Attempt number " + attemptNumber + ".");
       });
 
-      guestBookIOSocket.on("reconnect_error", function (errorData) {
-        console.error("An error occurred during reconnection to GuestBookService.");
+      photoboxIOSocket.on("reconnect_error", function (errorData) {
+        console.error("An error occurred during reconnection to PhotoboxService.");
         console.log(errorData);
       });
 
-      guestBookIOSocket.on("reconnect_failed", function () {
-        console.error("Failed to connect to GuestBookService. New attempt will be done in 5 seconds. Administrators received an Alert !");
+      photoboxIOSocket.on("reconnect_failed", function () {
+        console.error("Failed to connect to PhotoboxService. New attempt will be done in 5 seconds. Administrators received an Alert !");
         //TODO: Send an email and Notification to Admins !
 
         setTimeout(function() {
@@ -66,7 +66,7 @@ angular.module('PulseTotemCommon')
       });
 
       var photoboxSocket = socketFactory({
-        ioSocket: guestBookIOSocket
+        ioSocket: photoboxIOSocket
       });
 
       photoboxSocketFactory.photoboxSocket = photoboxSocket;
@@ -81,7 +81,7 @@ angular.module('PulseTotemCommon')
         photoboxSocketFactory.photoboxSocket.removeAllListeners(arguments[0]);
         photoboxSocketFactory.photoboxSocket.on.apply(this,arguments);
       } else {
-        console.error("An error occurred : GuestBookService isn't initialized.");
+        console.error("An error occurred : PhotoboxService isn't initialized.");
       }
     };
 
@@ -90,7 +90,7 @@ angular.module('PulseTotemCommon')
         photoboxSocketFactory.photoboxSocket.removeAllListeners(arguments[0]);
         photoboxSocketFactory.photoboxSocket.addListener.apply(this,arguments);
       } else {
-        console.error("An error occurred : GuestBookService isn't initialized.");
+        console.error("An error occurred : PhotoboxService isn't initialized.");
       }
     };
 
@@ -98,7 +98,7 @@ angular.module('PulseTotemCommon')
       if(photoboxSocketFactory.photoboxSocket != null) {
         photoboxSocketFactory.photoboxSocket.removeListener.apply(this,arguments);
       } else {
-        console.error("An error occurred : GuestBookService isn't initialized.");
+        console.error("An error occurred : PhotoboxService isn't initialized.");
       }
     };
 
@@ -106,7 +106,7 @@ angular.module('PulseTotemCommon')
       if(photoboxSocketFactory.photoboxSocket != null) {
         photoboxSocketFactory.photoboxSocket.removeAllListeners.apply(this,arguments);
       } else {
-        console.error("An error occurred : GuestBookService isn't initialized.");
+        console.error("An error occurred : PhotoboxService isn't initialized.");
       }
     };
 
@@ -114,7 +114,7 @@ angular.module('PulseTotemCommon')
       if(photoboxSocketFactory.photoboxSocket != null) {
         photoboxSocketFactory.photoboxSocket.emit.apply(this,arguments);
       } else {
-        console.error("An error occurred : GuestBookService isn't initialized.");
+        console.error("An error occurred : PhotoboxService isn't initialized.");
       }
     };
 
@@ -122,7 +122,7 @@ angular.module('PulseTotemCommon')
       if(photoboxSocketFactory.photoboxSocket != null) {
         photoboxSocketFactory.photoboxSocket.forward.apply(this,arguments);
       } else {
-        console.error("An error occurred : GuestBookService isn't initialized.");
+        console.error("An error occurred : PhotoboxService isn't initialized.");
       }
     };
 

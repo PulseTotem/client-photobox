@@ -19,5 +19,5 @@ angular.module('PulseTotemCommon')
         photoboxServiceUrl: 'http://localhost:6012/',
         //photoboxServiceUrl: 'http://service-photobox.pulsetotem.fr/',
         //photoboxServiceUrl: 'http://service-photobox-test.pulsetotem.fr/',
-        photoboxClientPath: 'photoboxClient'
+        photoboxClientPath: 'PhotoboxClient'
     });

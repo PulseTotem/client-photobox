@@ -15,8 +15,13 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <!-- SocketIO -->
+    <script src="https://cdn.socket.io/socket.io-1.3.2.js"></script>
+    <!-- script src="http://localhost:4000/socket.io/socket.io.js"></script -->
+    <!-- endSocketIO -->
   </head>
   <body ng-app="pulsetotemPhotoboxClientApp">
+
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -30,6 +35,8 @@
     <div layout="column" ng-view>
 
     </div>
+
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>

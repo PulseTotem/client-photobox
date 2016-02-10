@@ -11,7 +11,12 @@ angular.module('PulseTotemControl')
   .controller('PulseTotemControl.SessionCtrl', ['$rootScope', '$scope', '$routeParams', 'photoboxSocket', 'callbackManager', function($rootScope, $scope, $routeParams, photoboxSocket, callbackManager) {
     $scope.connected = false;
     $scope.waiting = true;
+    $scope.picture = null;
 
+    $scope.startCounter = function() {
+      console.log("Start counter !");
+      photoboxSocket.emit("StartCounter", {'callSocketId': $routeParams.socketid});
+    };
 
 
 
@@ -22,7 +27,6 @@ angular.module('PulseTotemControl')
               $rootScope.session = sessionDesc;
               if($rootScope.session._status == 'ACTIVE') {
                 $scope.waiting = false;
-                initDraw();
               }
             });
           },
@@ -39,9 +43,19 @@ angular.module('PulseTotemControl')
               $rootScope.session = sessionDesc;
               if($rootScope.session._status == 'ACTIVE') {
                 $scope.waiting = false;
-                initDraw();
               }
             });
+          },
+          function (fail) {
+            console.error(fail);
+            console.error("An error occurred during Taking Control on Screen.");
+          }
+        );
+      });
+
+      photoboxSocket.on("DisplayPicture", function (response) {
+        callbackManager(response, function (pictureURL) {
+            $scope.picture = pictureURL;
           },
           function (fail) {
             console.error(fail);
