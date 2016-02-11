@@ -18,6 +18,10 @@ angular.module('PulseTotemControl')
       photoboxSocket.emit("StartCounter", {'callSocketId': $routeParams.socketid});
     };
 
+    $scope.isPictureAvailable = function() {
+      return ($scope.picture !== null);
+    };
+
 
 
     var initSession = function() {
@@ -55,7 +59,9 @@ angular.module('PulseTotemControl')
 
       photoboxSocket.on("DisplayPicture", function (response) {
         callbackManager(response, function (pictureURL) {
+          $scope.$apply(function () {
             $scope.picture = pictureURL;
+          });
           },
           function (fail) {
             console.error(fail);

@@ -7,11 +7,11 @@
   </div>
   You're connected.
 
-  <div ng-if="!pictureURL">
+  <div ng-if="!isPictureAvailable()">
     <button ng-click="startCounter()">Click to take picture !</button>
   </div>
-  <div ng-if="pictureURL">
-    <img ng-src="pictureURL" style="width: 100%; height:100%" />
+  <div ng-if="isPictureAvailable()">
+    <img ng-src="{{picture}}" style="width: 100%; height:100%" />
     <button>Validate picture !</button>
     <button>Delete that ugly picture !</button>
   </div>
