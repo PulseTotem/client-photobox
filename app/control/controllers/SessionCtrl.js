@@ -8,18 +8,32 @@
  * Controller of the pulsetotemGuestBookClientApp
  */
 angular.module('PulseTotemControl')
-  .controller('PulseTotemControl.SessionCtrl', ['$rootScope', '$scope', '$routeParams', 'photoboxSocket', 'callbackManager', function($rootScope, $scope, $routeParams, photoboxSocket, callbackManager) {
-    $scope.connected = false;
-    $scope.waiting = true;
-    $scope.picture = null;
+  .controller('PulseTotemControl.SessionCtrl', ['$rootScope', '$scope', '$routeParams', 'photoboxSocket', 'callbackManager', 'SessionState', function($rootScope, $scope, $routeParams, photoboxSocket, callbackManager, SessionState) {
+
+
+    $scope.init = function () {
+      $rootScope.session = null;
+      $scope.status = SessionState.connecting;
+      $scope.picture = null;
+      $scope.isValidated = null;
+    };
+
+    $scope.init();
 
     $scope.startCounter = function() {
       console.log("Start counter !");
       photoboxSocket.emit("StartCounter", {'callSocketId': $routeParams.socketid});
+      $scope.status = SessionState.counting;
     };
 
-    $scope.isPictureAvailable = function() {
-      return ($scope.picture !== null);
+    $scope.validatePicture = function () {
+      photoboxSocket.emit("validatePicture", {'callSocketId': $routeParams.socketid});
+      $scope.status = SessionState.waitingValidation;
+    };
+
+    $scope.unvalidatePicture = function () {
+      photoboxSocket.emit("unvalidatePicture", {'callSocketId': $routeParams.socketid});
+      $scope.status = SessionState.waitingValidation;
     };
 
 
@@ -30,8 +44,21 @@ angular.module('PulseTotemControl')
             $scope.$apply(function () {
               $rootScope.session = sessionDesc;
               if($rootScope.session._status == 'ACTIVE') {
-                $scope.waiting = false;
+                $scope.status = SessionState.connected;
               }
+            });
+          },
+          function (fail) {
+            console.error(fail);
+            console.error("An error occurred during Locked Control.");
+          }
+        );
+      });
+
+      photoboxSocket.on("UnlockedControl", function (response) {
+        callbackManager(response, function (sessionDesc) {
+            $scope.$apply(function () {
+              $scope.init();
             });
           },
           function (fail) {
@@ -46,7 +73,7 @@ angular.module('PulseTotemControl')
             $scope.$apply(function () {
               $rootScope.session = sessionDesc;
               if($rootScope.session._status == 'ACTIVE') {
-                $scope.waiting = false;
+                $scope.status = SessionState.connected;
               }
             });
           },
@@ -61,7 +88,36 @@ angular.module('PulseTotemControl')
         callbackManager(response, function (pictureURL) {
           $scope.$apply(function () {
             $scope.picture = pictureURL;
+            $scope.status = SessionState.waitingDecision;
           });
+          },
+          function (fail) {
+            console.error(fail);
+            console.error("An error occurred during Taking Control on Screen.");
+          }
+        );
+      });
+
+      photoboxSocket.on("ValidatedPicture", function (response) {
+        callbackManager(response, function (pictureURL) {
+            $scope.$apply(function () {
+              $scope.validated = true;
+              $scope.status = SessionState.decisionReceived;
+            });
+          },
+          function (fail) {
+            console.error(fail);
+            console.error("An error occurred during Taking Control on Screen.");
+          }
+        );
+      });
+
+      photoboxSocket.on("UnvalidatedPicture", function (response) {
+        callbackManager(response, function (pictureURL) {
+            $scope.$apply(function () {
+              $scope.validated = false;
+              $scope.status = SessionState.decisionReceived;
+            });
           },
           function (fail) {
             console.error(fail);

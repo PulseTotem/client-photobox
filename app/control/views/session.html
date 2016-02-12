@@ -1,18 +1,32 @@
-<div ng-if="!connected">
-  Waiting for connection...
-</div>
-<div ng-if="connected">
-  <div ng-if="waiting">
+<div ng-switch="status">
+  <div ng-switch-when="SessionState.connecting">
+    Waiting for connection...
+  </div>
+  <div ng-switch-when="SessionState.waiting">
     Someone has already the control on the screen. Waiting a moment before your turn.
   </div>
-  You're connected.
-
-  <div ng-if="!isPictureAvailable()">
+  <div ng-switch-when="SessionState.connected">
     <button ng-click="startCounter()">Click to take picture !</button>
   </div>
-  <div ng-if="isPictureAvailable()">
+  <div ng-switch-when="SessionState.counting">
+    Look at the screen and smile !
+  </div>
+  <div ng-switch-when="SessionState.waitingDecision">
     <img ng-src="{{picture}}" style="width: 100%; height:100%" />
-    <button>Validate picture !</button>
-    <button>Delete that ugly picture !</button>
+    <button ng-click="validatePicture()">Validate picture !</button>
+    <button ng-click="unvalidatePicture()">Delete that ugly picture !</button>
+  </div>
+  <div ng-switch-when="SessionState.waitingValidation">
+    We are processing your decision :)
+  </div>
+  <div ng-switch-when="SessionState.decisionReceived">
+    <div ng-if="validated">
+      The following picture has been validated : <img ng-src="{{picture}}" style="width: 100%; height:100%" />
+    </div>
+    <div ng-if="!validated">
+      The picture has been deleted from our server !
+    </div>
+
+    Thanks for participating! Want to take another picture?
   </div>
 </div>
