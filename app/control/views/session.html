@@ -1,25 +1,25 @@
 <div ng-switch="status">
-  <div ng-switch-when="SessionState.connecting">
+  <div ng-switch-when="CONNECTING">
     Waiting for connection...
   </div>
-  <div ng-switch-when="SessionState.waiting">
+  <div ng-switch-when="WAITING">
     Someone has already the control on the screen. Waiting a moment before your turn.
   </div>
-  <div ng-switch-when="SessionState.connected">
+  <div ng-switch-when="CONNECTED">
     <button ng-click="startCounter()">Click to take picture !</button>
   </div>
-  <div ng-switch-when="SessionState.counting">
+  <div ng-switch-when="COUNTING">
     Look at the screen and smile !
   </div>
-  <div ng-switch-when="SessionState.waitingDecision">
+  <div ng-switch-when="WAITINGDECISION">
     <img ng-src="{{picture}}" style="width: 100%; height:100%" />
     <button ng-click="validatePicture()">Validate picture !</button>
     <button ng-click="unvalidatePicture()">Delete that ugly picture !</button>
   </div>
-  <div ng-switch-when="SessionState.waitingValidation">
+  <div ng-switch-when="WAITINGVALIDATION">
     We are processing your decision :)
   </div>
-  <div ng-switch-when="SessionState.decisionReceived">
+  <div ng-switch-when="DECISIONRECEIVED">
     <div ng-if="validated">
       The following picture has been validated : <img ng-src="{{picture}}" style="width: 100%; height:100%" />
     </div>

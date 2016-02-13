@@ -27,12 +27,12 @@ angular.module('PulseTotemControl')
     };
 
     $scope.validatePicture = function () {
-      photoboxSocket.emit("validatePicture", {'callSocketId': $routeParams.socketid});
+      photoboxSocket.emit("ValidatePicture", {'callSocketId': $routeParams.socketid});
       $scope.status = SessionState.waitingValidation;
     };
 
     $scope.unvalidatePicture = function () {
-      photoboxSocket.emit("unvalidatePicture", {'callSocketId': $routeParams.socketid});
+      photoboxSocket.emit("UnvalidatePicture", {'callSocketId': $routeParams.socketid});
       $scope.status = SessionState.waitingValidation;
     };
 
@@ -42,6 +42,7 @@ angular.module('PulseTotemControl')
       photoboxSocket.on("LockedControl", function (response) {
         callbackManager(response, function (sessionDesc) {
             $scope.$apply(function () {
+              console.log("Lock control :"+sessionDesc._status);
               $rootScope.session = sessionDesc;
               if($rootScope.session._status == 'ACTIVE') {
                 $scope.status = SessionState.connected;
@@ -71,6 +72,7 @@ angular.module('PulseTotemControl')
       photoboxSocket.on("ControlSession", function (response) {
         callbackManager(response, function (sessionDesc) {
             $scope.$apply(function () {
+              console.log("Control session :"+sessionDesc._status);
               $rootScope.session = sessionDesc;
               if($rootScope.session._status == 'ACTIVE') {
                 $scope.status = SessionState.connected;
@@ -126,15 +128,15 @@ angular.module('PulseTotemControl')
         );
       });
 
-      if (typeof($rootScope.session) == "undefined" || typeof($rootScope.session._id) == "undefined") {
+      if ($rootScope.session === null || typeof($rootScope.session) == "undefined" || typeof($rootScope.session._id) == "undefined") {
+        console.log("Take control !");
         photoboxSocket.emit("TakeControl", {'callSocketId': $routeParams.socketid});
       }
     };
 
     photoboxSocket.init($routeParams.socketid, function() {
       $scope.$apply(function () {
-        $scope.connected = true;
-        initSession();
+       initSession();
       });
     }, function(err) {
       console.error(err);

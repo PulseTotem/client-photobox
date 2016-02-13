@@ -8,11 +8,11 @@
  */
 angular.module('PulseTotemControl')
   .constant('SessionState', {
-    connecting: 0,
-    waiting: 1,
-    connected: 2,
-    counting: 3,
-    waitingDecision: 4,
-    waitingValidation: 5,
-    decisionReceived: 6
+    connecting: 'CONNECTING',
+    waiting: 'WAITING',
+    connected: 'CONNECTED',
+    counting: 'COUNTING',
+    waitingDecision: 'WAITINGDECISION',
+    waitingValidation: 'WAITINGVALIDATION',
+    decisionReceived: 'DECISIONRECEIVED'
 });
