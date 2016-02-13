@@ -6,5 +6,28 @@
   },
   "MAIN" : {
     "PAGE_NOT_FOUND" : "La page que vous recherchez n'existe pas..."
+  },
+  "PHOTOBOX": {
+    "CONNECTING": "En attente de connection...",
+    "WAITING": "Quelqu'un a d&eacute;j&agrave; le contr&ograve;le de l'&eacute;cran. Veuillez patienter...",
+    "CONNECTED": {
+      "BUTTON": "Prenez la photo"
+    },
+    "COUNTING": "Regardez l'&eacute;cran et souriez ! :)",
+    "WAITINGDECISION": {
+      "TITLE": "Souhaitez-vous garder cette photo ?",
+      "VALIDATION": "Oui, je la garde !",
+      "DELETION": "Non, supprimez la"
+    },
+    "WAITINGVALIDATION": "Veuillez patienter, nous traitons votre d&eacute;cision :)",
+    "DECISIONRECEIVED": {
+      "VALIDATED": "La photo a valid&eacute;e supprim&eacute;e ! Merci de votre participation !",
+      "DELETED": "La photo a &eacute;t&eacute; supprim&eacute;e ! Merci de votre participation !",
+      "RETRY": "Une autre ?"
+    },
+    "ERROR": {
+      "TITLE": "Une erreur a eu lieu, veuillez nous en excuser.",
+      "RETRY": "Un autre essai ?"
+    }
   }
 }

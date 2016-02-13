@@ -2,7 +2,7 @@
   <div ng-switch-when="CONNECTING" class="connecting">
     <md-toolbar class="md-accent">
       <div class="md-toolbar-tools">
-        <h2 class="md-flex">Waiting for connection...</h2>
+        <h2 class="md-flex">{{ 'PHOTOBOX.CONNECTING' | translate }}</h2>
       </div>
     </md-toolbar>
   </div>
@@ -11,7 +11,7 @@
   <div ng-switch-when="WAITING" class="waiting">
     <md-toolbar class="md-accent">
       <div class="md-toolbar-tools">
-        <h2 class="md-flex">Someone has already the control on the screen. Waiting a moment before your turn.</h2>
+        <h2 class="md-flex">{{ 'PHOTOBOX.WAITING' | translate }}</h2>
       </div>
     </md-toolbar>
   </div>
@@ -22,7 +22,7 @@
       <md-icon md-svg-src="images/icons/ic_add_a_photo_black_24px.svg"></md-icon>
     </md-button>
     <md-content>
-      Take a picture!
+      {{ 'PHOTOBOX.CONNECTED.BUTTON' | translate }}
     </md-content>
   </div>
 
@@ -30,7 +30,7 @@
   <div ng-switch-when="COUNTING">
     <md-toolbar class="md-primary">
       <div class="md-toolbar-tools">
-        <h2 class="md-flex">Someone has already the control on the screen. Waiting a moment before your turn.</h2>
+        <h2 class="md-flex">{{ 'PHOTOBOX.COUNTING' | translate }}</h2>
       </div>
     </md-toolbar>
   </div>
@@ -41,12 +41,12 @@
           <img ng-src="{{picture}}" class="md-card-image" alt="Picture">
           <md-card-title>
             <md-card-title-text>
-              <span class="md-headline">Do you want to keep this picture?</span>
+              <span class="md-headline">{{ 'PHOTOBOX.WAITINGDECISION.TITLE' | translate }}</span>
             </md-card-title-text>
           </md-card-title>
           <md-card-actions layout="row" layout-align="end center">
-            <md-button class="md-raised md-primary" ng-click="validatePicture()">Yes, keep it!</md-button>
-            <md-button class="md-raised md-warn" ng-click="unvalidatePicture()">Nah, delete it!</md-button>
+            <md-button class="md-raised md-primary" ng-click="validatePicture()">{{ 'PHOTOBOX.WAITINGDECISION.VALIDATION' | translate }}</md-button>
+            <md-button class="md-raised md-warn" ng-click="unvalidatePicture()">{{ 'PHOTOBOX.WAITINGDECISION.DELETION' | translate }}</md-button>
           </md-card-actions>
         </md-card>
   </div>
@@ -54,7 +54,7 @@
   <div ng-switch-when="WAITINGVALIDATION">
     <md-toolbar class="md-primary">
       <div class="md-toolbar-tools">
-        <h2 class="md-flex">We are processing your decision :)</h2>
+        <h2 class="md-flex">{{ 'PHOTOBOX.WAITINGVALIDATION' | translate }}</h2>
       </div>
     </md-toolbar>
   </div>
@@ -66,11 +66,11 @@
         <img ng-src="{{picture}}" class="md-card-image" alt="Picture">
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">The following picture has been validated! Thanks for participating!</span>
+            <span class="md-headline">{{ 'PHOTOBOX.DECISIONRECEIVED.VALIDATED' | translate }}</span>
           </md-card-title-text>
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button class="md-raised md-primary" ng-click="sessionInit()">Wanna take another one?</md-button>
+          <md-button class="md-raised md-primary" ng-click="sessionInit()">{{ 'PHOTOBOX.DECISIONRECEIVED.RETRY' | translate }}</md-button>
         </md-card-actions>
       </md-card>
     </div>
@@ -78,11 +78,11 @@
       <md-card>
         <md-card-title>
           <md-card-title-text>
-            <span class="md-headline">The picture has been deleted. Thanks for participating!</span>
+            <span class="md-headline">{{ 'PHOTOBOX.DECISIONRECEIVED.DELETED' | translate }}</span>
           </md-card-title-text>
         </md-card-title>
         <md-card-actions layout="row" layout-align="end center">
-          <md-button class="md-raised md-primary" ng-click="sessionInit()">Wanna take another one?</md-button>
+          <md-button class="md-raised md-primary" ng-click="sessionInit()">{{ 'PHOTOBOX.DECISIONRECEIVED.RETRY' | translate }}</md-button>
         </md-card-actions>
       </md-card>
     </div>
@@ -92,11 +92,11 @@
     <md-card>
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">An error occured, sorry for the inconveniance.</span>
+          <span class="md-headline">{{ 'PHOTOBOX.ERROR.TITLE' | translate }}</span>
         </md-card-title-text>
       </md-card-title>
       <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-raised md-primary" ng-click="sessionInit()">Do you want to try again?</md-button>
+        <md-button class="md-raised md-primary" ng-click="sessionInit()">{{ 'PHOTOBOX.ERROR.RETRY' | translate }}</md-button>
       </md-card-actions>
     </md-card>
   </div>
