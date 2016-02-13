@@ -1,32 +1,103 @@
-<div ng-switch="status">
-  <div ng-switch-when="CONNECTING">
-    Waiting for connection...
+<div ng-switch="status" class="maindiv">
+  <div ng-switch-when="CONNECTING" class="connecting">
+    <md-toolbar class="md-accent">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">Waiting for connection...</h2>
+      </div>
+    </md-toolbar>
   </div>
-  <div ng-switch-when="WAITING">
-    Someone has already the control on the screen. Waiting a moment before your turn.
+
+
+  <div ng-switch-when="WAITING" class="waiting">
+    <md-toolbar class="md-accent">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">Someone has already the control on the screen. Waiting a moment before your turn.</h2>
+      </div>
+    </md-toolbar>
   </div>
-  <div ng-switch-when="CONNECTED">
-    <button ng-click="startCounter()">Click to take picture !</button>
+
+
+  <div ng-switch-when="CONNECTED" class="connected">
+    <md-button class="md-fab" aria-label="Eat cake" ng-click="startCounter()">
+      <md-icon md-svg-src="images/icons/ic_add_a_photo_black_24px.svg"></md-icon>
+    </md-button>
+    <md-content>
+      Take a picture!
+    </md-content>
   </div>
+
+
   <div ng-switch-when="COUNTING">
-    Look at the screen and smile !
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">Someone has already the control on the screen. Waiting a moment before your turn.</h2>
+      </div>
+    </md-toolbar>
   </div>
+
+
   <div ng-switch-when="WAITINGDECISION">
-    <img ng-src="{{picture}}" style="width: 100%; height:100%" />
-    <button ng-click="validatePicture()">Validate picture !</button>
-    <button ng-click="unvalidatePicture()">Delete that ugly picture !</button>
+        <md-card>
+          <img ng-src="{{picture}}" class="md-card-image" alt="Picture">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">Do you want to keep this picture?</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-raised md-primary" ng-click="validatePicture()">Yes, keep it!</md-button>
+            <md-button class="md-raised md-warn" ng-click="unvalidatePicture()">Nah, delete it!</md-button>
+          </md-card-actions>
+        </md-card>
   </div>
+
   <div ng-switch-when="WAITINGVALIDATION">
-    We are processing your decision :)
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">We are processing your decision :)</h2>
+      </div>
+    </md-toolbar>
   </div>
+
+
   <div ng-switch-when="DECISIONRECEIVED">
     <div ng-if="validated">
-      The following picture has been validated : <img ng-src="{{picture}}" style="width: 100%; height:100%" />
+      <md-card>
+        <img ng-src="{{picture}}" class="md-card-image" alt="Picture">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">The following picture has been validated! Thanks for participating!</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-raised md-primary" ng-click="sessionInit()">Wanna take another one?</md-button>
+        </md-card-actions>
+      </md-card>
     </div>
     <div ng-if="!validated">
-      The picture has been deleted from our server !
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">The picture has been deleted. Thanks for participating!</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-raised md-primary" ng-click="sessionInit()">Wanna take another one?</md-button>
+        </md-card-actions>
+      </md-card>
     </div>
+  </div>
 
-    Thanks for participating! Want to take another picture?
+  <div ng-switch-when="ERROR">
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">An error occured, sorry for the inconveniance.</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-raised md-primary" ng-click="sessionInit()">Do you want to try again?</md-button>
+      </md-card-actions>
+    </md-card>
   </div>
 </div>

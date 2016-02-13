@@ -14,5 +14,6 @@ angular.module('PulseTotemControl')
     counting: 'COUNTING',
     waitingDecision: 'WAITINGDECISION',
     waitingValidation: 'WAITINGVALIDATION',
-    decisionReceived: 'DECISIONRECEIVED'
+    decisionReceived: 'DECISIONRECEIVED',
+    error: 'ERROR'
 });

@@ -17,7 +17,6 @@ angular.module('PulseTotemControl')
       $scope.picture = null;
       $scope.isValidated = null;
     };
-
     $scope.init();
 
     $scope.startCounter = function() {
@@ -36,9 +35,9 @@ angular.module('PulseTotemControl')
       $scope.status = SessionState.waitingValidation;
     };
 
+    $scope.initSession = function() {
+      $scope.init();
 
-
-    var initSession = function() {
       photoboxSocket.on("LockedControl", function (response) {
         callbackManager(response, function (sessionDesc) {
             $scope.$apply(function () {
@@ -59,7 +58,9 @@ angular.module('PulseTotemControl')
       photoboxSocket.on("UnlockedControl", function (response) {
         callbackManager(response, function (sessionDesc) {
             $scope.$apply(function () {
-              $scope.init();
+              if ($scope.status != SessionState.decisionReceived) {
+                $scope.status = SessionState.error;
+              }
             });
           },
           function (fail) {
@@ -136,7 +137,7 @@ angular.module('PulseTotemControl')
 
     photoboxSocket.init($routeParams.socketid, function() {
       $scope.$apply(function () {
-       initSession();
+       $scope.initSession();
       });
     }, function(err) {
       console.error(err);
