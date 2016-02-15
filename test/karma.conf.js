@@ -1,6 +1,6 @@
 // Karma configuration
 // http://karma-runner.github.io/0.12/config/configuration-file.html
-// Generated on 2015-11-13 using
+// Generated on 2015-03-03 using
 // generator-karma 0.9.0
 
 module.exports = function(config) {
@@ -14,7 +14,7 @@ module.exports = function(config) {
     basePath: '../',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: ['mocha','chai'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -37,7 +37,7 @@ module.exports = function(config) {
       'bower_components/angular-material/angular-material.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
-      'app/scripts/**/*.js',
+      '../app/configuration/**/*.js',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
@@ -47,7 +47,7 @@ module.exports = function(config) {
     ],
 
     // web server port
-    port: 8080,
+    port: 10001,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -61,11 +61,25 @@ module.exports = function(config) {
       'PhantomJS'
     ],
 
-    // Which plugins to enable
-    plugins: [
-      'karma-phantomjs-launcher',
-      'karma-jasmine'
-    ],
+    reporters: ['progress', 'jenkins', 'coverage'],
+
+    jenkinsReporter: {
+      outputFile: 'build/test/report.xml'
+    },
+
+    preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      '*.js': ['coverage']
+    },
+
+    coverageReporter: {
+      reporters: [
+        { type: "html", dir: 'build/coverage', subdir: '.' },
+        { type: "cobertura", dir: 'build/coverage', subdir: '.' },
+      ]
+    },
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
