@@ -101,7 +101,7 @@ angular.module('PulseTotemControl')
         );
       });
 
-      photoboxSocket.on("ValidatedPicture", function (response) {
+      photoboxSocket.on("SessionEndedWithValidation", function (response) {
         callbackManager(response, function (pictureURL) {
             $scope.$apply(function () {
               $scope.validated = true;
@@ -115,7 +115,7 @@ angular.module('PulseTotemControl')
         );
       });
 
-      photoboxSocket.on("UnvalidatedPicture", function (response) {
+      photoboxSocket.on("SessionEndedWithoutValidation", function (response) {
         callbackManager(response, function (pictureURL) {
             $scope.$apply(function () {
               $scope.validated = false;
