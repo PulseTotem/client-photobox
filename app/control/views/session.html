@@ -37,7 +37,8 @@
 
 
   <div ng-switch-when="WAITINGDECISION">
-        <md-card>
+    <md-content>
+    <md-card>
           <img ng-src="{{picture}}" class="md-card-image" alt="Picture">
           <md-card-title>
             <md-card-title-text>
@@ -49,6 +50,7 @@
             <md-button class="md-raised md-warn" ng-click="unvalidatePicture()">{{ 'PHOTOBOX.WAITINGDECISION.DELETION' | translate }}</md-button>
           </md-card-actions>
         </md-card>
+    </md-content>
   </div>
 
   <div ng-switch-when="WAITINGVALIDATION">
@@ -62,6 +64,7 @@
 
   <div ng-switch-when="DECISIONRECEIVED">
     <div ng-if="validated">
+      <md-content>
       <md-card>
         <img ng-src="{{picture}}" class="md-card-image" alt="Picture">
         <md-card-title>
@@ -73,8 +76,10 @@
           <md-button class="md-raised md-primary" ng-click="initSession()">{{ 'PHOTOBOX.DECISIONRECEIVED.RETRY' | translate }}</md-button>
         </md-card-actions>
       </md-card>
+        <md-content>
     </div>
     <div ng-if="!validated">
+      <md-content>
       <md-card>
         <md-card-title>
           <md-card-title-text>
@@ -85,10 +90,12 @@
           <md-button class="md-raised md-primary" ng-click="initSession()">{{ 'PHOTOBOX.DECISIONRECEIVED.RETRY' | translate }}</md-button>
         </md-card-actions>
       </md-card>
+        <md-content>
     </div>
   </div>
 
   <div ng-switch-when="ERROR">
+    <md-content>
     <md-card>
       <md-card-title>
         <md-card-title-text>
@@ -99,5 +106,6 @@
         <md-button class="md-raised md-primary" ng-click="initSession()">{{ 'PHOTOBOX.ERROR.RETRY' | translate }}</md-button>
       </md-card-actions>
     </md-card>
+      <md-content>
   </div>
 </div>

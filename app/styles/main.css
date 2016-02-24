@@ -81,7 +81,6 @@ body {
     border-bottom: 0;
   }
 }
-.connected {
-  text-align: center;
-  width: 100%;
+.view {
+  height: 100%;
 }

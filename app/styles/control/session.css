@@ -1,0 +1,14 @@
+
+.connected {
+  text-align: center;
+  width: 100%;
+}
+div {
+  height: 100%;
+}
+md-card {
+  height: 90%;
+}
+md-content {
+  height: 100%;
+}
