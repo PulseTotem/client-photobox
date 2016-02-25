@@ -12,3 +12,12 @@ md-card {
 md-content {
   height: 100%;
 }
+.connected .takepicture {
+  height: 125px;
+  width: 125px;
+}
+
+.takepicture md-icon {
+  height: 50px;
+  width: 50px;
+}
