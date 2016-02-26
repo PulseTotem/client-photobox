@@ -15,8 +15,8 @@ angular
             prefix: '/locales/locale-',
             suffix: '.json'
         });
-        $translateProvider.preferredLanguage('en');
-        $translateProvider.fallbackLanguage(['en', 'fr']);
+        $translateProvider.preferredLanguage('fr');
+        $translateProvider.fallbackLanguage(['fr', 'en']);
         $translateProvider.useSanitizeValueStrategy('escaped');
         $translateProvider.useMissingTranslationHandlerLog();
     }]);
