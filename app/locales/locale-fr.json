@@ -2,14 +2,14 @@
   "MENU" : {
     "LANGUAGE" : "Langage",
     "ENGLISH": "English",
-    "FRENCH": "Fran&ccedil;ais"
+    "FRENCH": "Français"
   },
   "MAIN" : {
     "PAGE_NOT_FOUND" : "La page que vous recherchez n'existe pas..."
   },
   "PHOTOBOX": {
     "CONNECTING": "En attente de connection...",
-    "WAITING": "Quelqu'un a déjà le contr&ograve;le de l'écran. Veuillez patienter...",
+    "WAITING": "Quelqu'un a déjà le contrôle de l'écran. Veuillez patienter...",
     "CONNECTED": {
       "BUTTON": "Prenez la photo"
     },
@@ -21,7 +21,7 @@
     },
     "WAITINGVALIDATION": "Veuillez patienter, nous traitons votre décision :)",
     "DECISIONRECEIVED": {
-      "VALIDATED": "La photo a validée supprimée ! Merci de votre participation !",
+      "VALIDATED": "La photo a été validée ! Merci de votre participation !",
       "DELETED": "La photo a été supprimée ! Merci de votre participation !",
       "RETRY": "Une autre ?"
     },
