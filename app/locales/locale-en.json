@@ -1,0 +1,33 @@
+{
+    "MENU" : {
+        "LANGUAGE" : "Language",
+        "ENGLISH": "English",
+        "FRENCH": "Fran&ccedil;ais"
+    },
+    "MAIN" : {
+        "PAGE_NOT_FOUND" : "The page you search doesn't exist..."
+    },
+    "PHOTOBOX": {
+      "CONNECTING": "Waiting for connection...",
+      "WAITING": "Someone has already the control on the screen. Waiting a moment before your turn.",
+      "CONNECTED": {
+        "BUTTON": "Take a picture"
+      },
+      "COUNTING": "Look at the screen and smile!",
+      "WAITINGDECISION": {
+        "TITLE": "Do you want to keep this picture?",
+        "VALIDATION": "Yes, keep it!",
+        "DELETION": "Nah, delete it!"
+      },
+      "WAITINGVALIDATION": "Wait a moment, we are processing your decision :)",
+      "DECISIONRECEIVED": {
+        "VALIDATED": "The picture has been validated! Thanks for participating!",
+        "DELETED": "The picture has been deleted! Thanks for participating!",
+        "RETRY": "Wanna take another one?"
+      },
+      "ERROR": {
+        "TITLE": "An error occured, sorry for the inconveniance :(",
+        "RETRY": "Do you want to try again?"
+      }
+    }
+}

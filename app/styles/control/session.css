@@ -1,0 +1,23 @@
+
+.connected {
+  text-align: center;
+  width: 100%;
+}
+div {
+  height: 100%;
+}
+md-card {
+  height: 90%;
+}
+md-content {
+  height: 100%;
+}
+.connected .takepicture {
+  height: 125px;
+  width: 125px;
+}
+
+.takepicture md-icon {
+  height: 50px;
+  width: 50px;
+}

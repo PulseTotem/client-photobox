@@ -1,0 +1,33 @@
+{
+  "MENU" : {
+    "LANGUAGE" : "Langage",
+    "ENGLISH": "English",
+    "FRENCH": "Français"
+  },
+  "MAIN" : {
+    "PAGE_NOT_FOUND" : "La page que vous recherchez n'existe pas..."
+  },
+  "PHOTOBOX": {
+    "CONNECTING": "En attente de connection...",
+    "WAITING": "Quelqu'un a déjà le contrôle de l'écran. Veuillez patienter...",
+    "CONNECTED": {
+      "BUTTON": "Prenez la photo"
+    },
+    "COUNTING": "Regardez l'écran TV et souriez ! :)",
+    "WAITINGDECISION": {
+      "TITLE": "Souhaitez-vous garder cette photo ?",
+      "VALIDATION": "Oui, je la garde !",
+      "DELETION": "Non, supprimez la"
+    },
+    "WAITINGVALIDATION": "Veuillez patienter, nous traitons votre décision :)",
+    "DECISIONRECEIVED": {
+      "VALIDATED": "La photo a été validée ! Merci de votre participation !",
+      "DELETED": "La photo a été supprimée ! Merci de votre participation !",
+      "RETRY": "Une autre ?"
+    },
+    "ERROR": {
+      "TITLE": "Une erreur a eu lieu, veuillez nous en excuser.",
+      "RETRY": "Un autre essai ?"
+    }
+  }
+}

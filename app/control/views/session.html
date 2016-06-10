@@ -1,0 +1,111 @@
+<div ng-switch="status" class="maindiv">
+  <div ng-switch-when="CONNECTING" class="connecting">
+    <md-toolbar class="md-accent">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ 'PHOTOBOX.CONNECTING' | translate }}</h2>
+      </div>
+    </md-toolbar>
+  </div>
+
+
+  <div ng-switch-when="WAITING" class="waiting">
+    <md-toolbar class="md-accent">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ 'PHOTOBOX.WAITING' | translate }}</h2>
+      </div>
+    </md-toolbar>
+  </div>
+
+
+  <div ng-switch-when="CONNECTED" class="connected">
+    <md-button class="md-fab takepicture" aria-label="Take picture" ng-click="startCounter()">
+      <md-icon md-svg-src="images/icons/ic_add_a_photo_black_24px.svg"></md-icon>
+    </md-button>
+    <md-content>
+      {{ 'PHOTOBOX.CONNECTED.BUTTON' | translate }}
+    </md-content>
+  </div>
+
+
+  <div ng-switch-when="COUNTING">
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ 'PHOTOBOX.COUNTING' | translate }}</h2>
+      </div>
+    </md-toolbar>
+  </div>
+
+
+  <div ng-switch-when="WAITINGDECISION">
+    <md-content>
+    <md-card>
+          <img ng-src="{{picture}}" class="md-card-image" alt="Picture">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{ 'PHOTOBOX.WAITINGDECISION.TITLE' | translate }}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="end center">
+            <md-button class="md-raised md-primary" ng-click="validatePicture()">{{ 'PHOTOBOX.WAITINGDECISION.VALIDATION' | translate }}</md-button>
+            <md-button class="md-raised md-warn" ng-click="unvalidatePicture()">{{ 'PHOTOBOX.WAITINGDECISION.DELETION' | translate }}</md-button>
+          </md-card-actions>
+        </md-card>
+    </md-content>
+  </div>
+
+  <div ng-switch-when="WAITINGVALIDATION">
+    <md-toolbar class="md-primary">
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">{{ 'PHOTOBOX.WAITINGVALIDATION' | translate }}</h2>
+      </div>
+    </md-toolbar>
+  </div>
+
+
+  <div ng-switch-when="DECISIONRECEIVED">
+    <div ng-if="validated">
+      <md-content>
+      <md-card>
+        <img ng-src="{{picture}}" class="md-card-image" alt="Picture">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ 'PHOTOBOX.DECISIONRECEIVED.VALIDATED' | translate }}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-raised md-primary" ng-click="initSession()">{{ 'PHOTOBOX.DECISIONRECEIVED.RETRY' | translate }}</md-button>
+        </md-card-actions>
+      </md-card>
+        <md-content>
+    </div>
+    <div ng-if="!validated">
+      <md-content>
+      <md-card>
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">{{ 'PHOTOBOX.DECISIONRECEIVED.DELETED' | translate }}</span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-raised md-primary" ng-click="initSession()">{{ 'PHOTOBOX.DECISIONRECEIVED.RETRY' | translate }}</md-button>
+        </md-card-actions>
+      </md-card>
+        <md-content>
+    </div>
+  </div>
+
+  <div ng-switch-when="ERROR">
+    <md-content>
+    <md-card>
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{ 'PHOTOBOX.ERROR.TITLE' | translate }}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-raised md-primary" ng-click="initSession()">{{ 'PHOTOBOX.ERROR.RETRY' | translate }}</md-button>
+      </md-card-actions>
+    </md-card>
+      <md-content>
+  </div>
+</div>
